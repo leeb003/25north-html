@@ -7,7 +7,7 @@
 	var form="form-send.php";  // The PHP handler script used that we submit to
 
 	// About Us Page Form Submission
-	$('#contact-form').submit(function() {
+	$(document).on('submit', '#contact-form', function() {
 		var btnText = $('#submit').val();
 		$('#submit').val('Sending...');
 		$('#submit').attr('disabled', 'disabled');
@@ -33,7 +33,7 @@
 	});
 			
 	// Blog Page Comment Form Submission
-	$('#commentform').submit(function() {
+	$(document).on('submit', '#commentform', function() {
     	var btnText = $('#submit').val();
     	$('#submit').val('Sending...');
     	$('#submit').attr('disabled', 'disabled');

@@ -374,27 +374,37 @@ a.detail-switch span {
 .navbar-brand.not-shown img.smaller-logo {
   width: 0;
 }
-.dropdown-menu li a {
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:focus,
+.navbar-default .navbar-nav > .active > a:hover {
+  background-color: transparent;
+}
+.dropdown-menu > .active > a,
+.dropdown-menu > .active > a:focus,
+.dropdown-menu > .active > a:hover {
+  background-color: #fec107;
+}
+.navbar-default .navbar-nav .open .dropdown-menu li a {
   padding: 10px 20px;
   background-color: #ffffff;
 }
-.dropdown-menu > li > a:focus {
+.navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
   background-color: #fec107;
   color: #ffffff;
 }
-.dropdown-menu > li > a:hover {
+.navbar-default .navbar-nav .open .dropdown-menu > li > a:hover {
   background-color: #fec107;
   color: #ffffff;
 }
-.dropdown-menu > .active > a {
+.navbar-default .navbar-nav .open .dropdown-menu > .active > a {
   color: #ffffff;
   background-color: #fec107;
 }
-.dropdown-menu > .active > a:focus {
+.navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
   color: #ffffff;
   background-color: #fec107;
 }
-.dropdown-menu > .active > a:hover {
+.navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover {
   color: #ffffff;
   background-color: #fec107;
 }
@@ -886,7 +896,6 @@ table.property-info {
 }
 .add-inner {
   font-size: 15px;
-  padding: 20px;
 }
 .add-item {
   padding: 20px;
@@ -1248,6 +1257,8 @@ ul.filter > li.active a {
   color: #fec107;
   text-transform: uppercase;
   margin-bottom: 0;
+  display: inline-block;
+  width: 100%;
 }
 .contact-items {
   background-color: #fec107;
@@ -1295,6 +1306,7 @@ p.text {
   padding: 10px;
   border: 1px solid #fec107;
   color: #fec107;
+  background-color: rgba(255, 255, 255, 0.85);
 }
 .owl-carousel-agents .owl-prev:hover,
 .owl-carousel-agents .owl-next:hover {
@@ -1307,6 +1319,10 @@ p.text {
 }
 .owl-carousel-agents .owl-next {
   right: -60px;
+}
+.owl-carousel-agents .owl-prev i,
+.owl-carousel-agents .owl-next i {
+  font-weight: 900;
 }
 .owl-carousel-agents .owl-prev i:first-child,
 .owl-carousel-agents .owl-next i:first-child {
@@ -1617,7 +1633,7 @@ p.text {
   clear: both;
   overflow: hidden;
 }
-@media (max-width: 768px) {
+@media (max-width: 991px) {
   .blog-header {
     background: transparent url('../img/large-main.jpg') no-repeat fixed top;
     height: 280px;
@@ -2123,7 +2139,8 @@ p.logged-in-as {
   text-align: center;
   background-color: #f7f7f7;
   font-size: 14px;
-  padding: 25px;
+  padding-top: 25px;
+  padding-bottom: 25px;
   position: relative;
 }
 .footer .totop {
@@ -2169,6 +2186,14 @@ p.logged-in-as {
   h2 {
     font-size: 20px;
     margin-bottom: 25px;
+  }
+  h3 {
+    font-size: 18px;
+  }
+  .btn-pri.vtour,
+  .btn-sec,
+  .btn-third {
+    font-size: 16px;
   }
   .blog-section .bl-title h2 {
     font-size: 20px;
@@ -2255,6 +2280,11 @@ p.logged-in-as {
   .nav > li.social-link {
     display: none;
   }
+  .navbar-nav {
+    float: none;
+    margin-left: 0;
+    margin-right: 0;
+  }
   div#navbar.navbar-collapse.collapse.in .navbar-nav {
     text-align: center;
     width: 100%;
@@ -2263,7 +2293,7 @@ p.logged-in-as {
     text-align: center;
     width: 100%;
   }
-  .navbar-nav .open .dropdown-menu {
+  .navbar-default .navbar-nav .open .dropdown-menu {
     position: static;
     float: none;
     width: auto;
@@ -2273,14 +2303,33 @@ p.logged-in-as {
     -webkit-box-shadow: none;
     box-shadow: none;
   }
-  .navbar-nav .open .dropdown-menu > li > a {
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a {
     text-align: center;
   }
-  .navbar-nav > li {
+  .navbar-default .navbar-nav > li {
     float: none;
+  }
+  .navbar-default .navbar-nav > li > a {
+    line-height: 45px;
   }
   .collapse.in {
     display: block !important;
+  }
+  .additional-items .col-md-3:nth-child(2) {
+    border: none;
+  }
+  .additional-items .col-md-3:nth-child(odd) {
+    border-right: 1px solid #dddddd;
+  }
+}
+@media (max-width: 1200px) {
+  .owl-carousel-agents .owl-prev {
+    left: 10px;
+    top: 40%;
+  }
+  .owl-carousel-agents .owl-next {
+    right: 10px;
+    top: 40%;
   }
 }
 /*

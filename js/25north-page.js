@@ -51,6 +51,30 @@
 	}
 	scrollBanner();
 
+	/* Google About Page Map */
+	function initialize() {
+        var myCenter = new google.maps.LatLng(39.7645187,-104.9951951);
+        var mapProp = {
+            center : myCenter,
+            zoom : 13,
+            mapTypeId : google.maps.MapTypeId.ROADMAP,
+            scrollwheel: false,
+            draggable: !("ontouchend" in document),
+        };
+        var map = new google.maps.Map(document.getElementById("mapSection"), mapProp);
+        var marker = new google.maps.Marker({
+            position : myCenter,
+            icon : 'img/map_marker.png'
+        });
+        marker.setMap(map);
+    }
+
+	$(window).load(function() {
+        if($('#mapSection').length) {
+            initialize();
+        }
+    });
+	
 	$(document).ready(function() {
 
 		/* Call NavLink hover function */
@@ -61,15 +85,15 @@
 			responsive: {
 				0: {
 					items: 1,
-					nav:false
+					nav:true
 				},
 				500: {
 					items: 2,
-					nav:false
+					nav:true
 				},
 				991:{
 					items: 3,
-					nav: true
+					nav: true 
 				},
 				1200:{
 					items: 4,

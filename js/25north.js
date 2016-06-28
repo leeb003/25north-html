@@ -5,15 +5,17 @@
 (function($) {
 	"use strict";
 
+	var myTemplate = window.myTemplate || {};
+
 	/* Scroll to top */
 	$(document).on('click', '.totop', function() {
     	$('html, body').animate({scrollTop: 0}, 600, 'swing');
     	return false;
 	});
 
-	// smooth scroll function
-	$('a[href*="#"]:not([href="#"])').click(function() {
-    	if ($(this).closest('ul').hasClass('navbar-nav')) {
+	/* Smooth scroll function */
+	$(document).on('click', 'ul.navbar-nav a', function(e) {
+		if ( $(e.target).is('a[href*="#"]:not([href="#"]') ) {
         	if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'')
             	|| location.hostname == this.hostname) {
 
@@ -29,8 +31,48 @@
     	}
 	});
 
-	// load in correct position function
+	
+    /* Enable link hover with full menu */
+    function hoverNavLinks() {
+        var winWidth = $(window).width();
+        if (winWidth >= 992) {
+            /* Hover navbar dropdowns */
+            $('.navbar [data-toggle="dropdown"]').bootstrapDropdownHover({
+                // see next for specifications
+            });
+
+            // ADD SLIDEDOWN ANIMATION TO DROPDOWN //
+            $('.dropdown').on('show.bs.dropdown', function(e){
+                $(this).find('.dropdown-menu').first().stop(true, true).slideDown("fast");
+            });
+
+            // ADD SLIDEUP ANIMATION TO DROPDOWN //
+            $('.dropdown').on('hide.bs.dropdown', function(e){
+                $(this).find('.dropdown-menu').first().stop(true, true).slideUp("fast");
+            });
+        }
+    }
+
+	/* Google Map Section */
+	function initialize() {
+        var myCenter = new google.maps.LatLng(39.7645187,-104.9951951);
+        var mapProp = {
+            center : myCenter,
+            zoom : 13,
+            mapTypeId : google.maps.MapTypeId.ROADMAP,
+            scrollwheel: false,
+            draggable: !("ontouchend" in document),
+        };
+        var map = new google.maps.Map(document.getElementById("mapSection"), mapProp);
+        var marker = new google.maps.Marker({
+            position : myCenter,
+            icon : 'img/map_marker.png'
+        });
+        marker.setMap(map);
+    }
+
 	$(window).load(function() {
+		/* load in correct position function */
     	if ($('#totop .top-holder').length ) {  
         	var hash = window.location.hash;
         	var headerOffset = top;
@@ -38,55 +80,36 @@
             	$(document).scrollTop( $(hash).offset().top - $('#totop .top-holder').outerHeight() );
         	}
     	}
+	
+		/* Isotope Image Galleries */
+        myTemplate.Isotope = function () {
+            // 3 column layout
+            var isotopeContainer2 = $('#isotope-container2');
+            if( !isotopeContainer2.length || !jQuery().isotope ) return;
+            isotopeContainer2.isotope({
+                itemSelector: '.isotopeSelector',
+                layoutMode: 'fitRows',
+            });
+            $('#isotope-filters2').on( 'click', 'a', function(e) {
+                $('#isotope-filters2').find('.active').removeClass('active');
+                $(this).parent().addClass('active');
+                var filterValue = $(this).attr('data-filter');
+                isotopeContainer2.isotope({ filter: filterValue });
+                e.preventDefault();
+            });
+        };
+		// Functions Initializers
+		myTemplate.Isotope();
+
+		/* Front Page Google Map */
+		if($('#mapSection').length) {
+        	initialize();
+        }
 	});
-
-	/* Enable link hover with full menu */
-	function hoverNavLinks() {
-		var winWidth = $(window).width();
-		if (winWidth >= 992) {
-			/* Hover navbar dropdowns */
-			$('.navbar [data-toggle="dropdown"]').bootstrapDropdownHover({
-    			// see next for specifications
-			});
-
-			// ADD SLIDEDOWN ANIMATION TO DROPDOWN //
-			$('.dropdown').on('show.bs.dropdown', function(e){
-    			$(this).find('.dropdown-menu').first().stop(true, true).slideDown("fast");
-			});
-
-  			// ADD SLIDEUP ANIMATION TO DROPDOWN //
-			$('.dropdown').on('hide.bs.dropdown', function(e){
-				$(this).find('.dropdown-menu').first().stop(true, true).slideUp("fast");
-			});
-		}
-	}
 
 	$(document).ready(function() {
 		/* Call hoverNavLinks function */
 		hoverNavLinks();
-
-		/* Isotope Image Galleries */
-		var myTemplate = window.myTemplate || {},
-    	$win = $( window );
-	
-		myTemplate.Isotope = function () {
-			// 3 column layout
-			var isotopeContainer2 = $('#isotope-container2');
-			if( !isotopeContainer2.length || !jQuery().isotope ) return;
-			$win.load(function(){
-				isotopeContainer2.isotope({
-					itemSelector: '.isotopeSelector',
-					layoutMode: 'fitRows',
-				});
-			$('#isotope-filters2').on( 'click', 'a', function(e) {
-					$('#isotope-filters2').find('.active').removeClass('active');
-					$(this).parent().addClass('active');
-					var filterValue = $(this).attr('data-filter');
-					isotopeContainer2.isotope({ filter: filterValue });
-					e.preventDefault();
-				});
-			});
-		};
 
 		/* Fancybox */
 		$('.fancybox-media').fancybox({
@@ -111,11 +134,10 @@
 			});
 		};
 	
-		//Functions Initializers
-		myTemplate.Isotope();
+		// Functions Initializers
 		myTemplate.Fancybox();
 
-		/* Owl Carousel */
+		/* Features section Owl Carousel */
 		$('#owl-carousel-features').owlCarousel ({
 			items: 1,
 			animateOut: 'fadeOutLeft',
@@ -129,10 +151,9 @@
 		});
 		var owl = $('#owl-carousel-features').owlCarousel();
 		// trigger next
-		$('.detail-switch').click(function() {
+		$(document).on('click', '.detail-switch', function() {
     		owl.trigger('next.owl.carousel');
 			return false;
 		})
 	});
-
 })(jQuery);
