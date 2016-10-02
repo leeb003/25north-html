@@ -3,7 +3,8 @@
 
 1. GENERAL STYLES
 	1.1 Header Styles
-	1.2 Buttons
+	1.2 Sticky Menu
+	1.3 Buttons
 2. FRONT PAGE STYLES
 	2.1 Main image section
 	2.2 Features section
@@ -264,6 +265,9 @@ a.detail-switch span {
 .sqft {
   color: #fec107;
 }
+.upper80 {
+  margin-top: 80px;
+}
 /*
  * --- 1.1 Header Styles ---
  */
@@ -419,7 +423,47 @@ a.detail-switch span {
   color: #46505c;
 }
 /*
- * --- 1.2 buttons ---
+ * --- 1.2 Sticky Menu --
+ */
+.myfixed {
+  margin:0 auto!important;
+  float:none!important; border:0px!important;
+  background:none!important;
+  max-width:100%!important;
+}
+/*#mysticky-nav.wrapfixed > .navbar > .container { background-color: #ccc; } */
+#mysticky-nav.wrapfixed {
+  background-color: transparent;
+}
+#mysticky-nav > .navbar > .container {
+    background-color: #f7f7f7;
+}
+#mysticky-nav {
+  width:100%!important;
+  position: static;top:
+  -100px;
+}
+.wrapfixed {
+  position: fixed!important;
+  top:0px!important;
+  left: 0px!important;
+  margin-top:0px!important;
+  z-index: 1000000;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+}
+@media (max-width: 359px) {
+  .wrapfixed {
+    position: static!important;
+    display: none!important;
+  }
+}
+
+
+/*
+ * --- 1.3 buttons ---
  */
 .btn-pri {
   font: 14px/24px 'Roboto', sans-serif;
@@ -1124,6 +1168,9 @@ ul.filter > li.active a {
   padding: 40px;
   text-align: left;
 }
+.posts-container .post-content {
+  padding: 0 40px;
+}
 .post-content.pull-left {
   text-align: right;
 }
@@ -1214,6 +1261,7 @@ ul.filter > li.active a {
 .readmore:focus {
   text-decoration: underline;
   text-decoration-color: #aaaaaa;
+  font-weight: 300;
   color: #6e6e6e;
 }
 .pull-left .readmore {
@@ -1574,10 +1622,12 @@ p.text {
   text-align: center;
 }
 .not-found .overlay-col {
-  padding-bottom: 200px;
+  padding-top: 60px;
+  padding-bottom: 100px;
 }
 .not-found h1 {
-  margin-top: 200px;
+  margin-top: 20px;
+  line-height: 1;
   font-size: 250px;
 }
 .not-found h2.sectionh {
@@ -1588,7 +1638,6 @@ p.text {
     padding-bottom: 100px;
   }
   .not-found h1 {
-    margin-top: 100px;
     font-size: 48px;
   }
   .not-found h2.sectionh {
@@ -1681,6 +1730,9 @@ p.text {
 }
 .top-space {
   margin-top: 60px;
+}
+a.readmore {
+  font-weight: 500;
 }
 /*
  * --- 5.1 Blog Sidebar ---
@@ -1826,11 +1878,21 @@ p.text {
   float: right;
   color: #9c9c9c;
 }
+@media (max-width: 1200px) {
+  .recent_entry .sb-title {
+    padding-left: 10px;
+  }
+  .recent_entry .sb-smdate {
+    float: left;
+    clear: both;
+  }
+}
 /*
  * === 6. BLOG SINGLE ENTRY PAGE ===
  */
 blockquote {
   color: #5a5a5a;
+  margin: 20px 0px;
 }
 cite {
   color: #555555;
@@ -1847,6 +1909,7 @@ cite {
 .post-cat-tags p {
   display: inline-block;
   line-height: 120%;
+  margin: 10px;
 }
 /*
  *  --- 6.1 Comments ---
@@ -1945,6 +2008,9 @@ li > div.comment {
  */
 .comment-content .comment-actions {
   display: none;
+}
+.comment-content.post-content {
+  padding: 10px 40px 20px 40px;
 }
 .comment-content h1 {
   font-size: 1.25em;

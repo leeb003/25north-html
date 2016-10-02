@@ -5,7 +5,8 @@
 
 1. GENERAL STYLES
 	1.1 Header Styles
-	1.2 Buttons
+	1.2 Sticky Menu
+	1.3 Buttons
 2. FRONT PAGE STYLES
 	2.1 Main image section
 	2.2 Features section
@@ -284,6 +285,9 @@ a.detail-switch span {
 .sqft {
 	color: @accent_color;
 }
+.upper80 {
+  margin-top: 80px;
+}
 
 /*
  * --- 1.1 Header Styles ---
@@ -461,9 +465,46 @@ a.detail-switch span {
 	line-height: 28px;
 	color: @secondary_color;
 }
-
 /*
- * --- 1.2 buttons ---
+ * --- 1.2 Sticky Menu --
+ */
+.myfixed {
+  margin:0 auto!important;
+  float:none!important; border:0px!important;
+  background:none!important;
+  max-width:100%!important;
+}
+/*#mysticky-nav.wrapfixed > .navbar > .container { background-color: #ccc; } */
+#mysticky-nav.wrapfixed {
+  background-color: transparent;
+}
+#mysticky-nav > .navbar > .container {
+    background-color: #f7f7f7;
+}
+#mysticky-nav {
+  width:100%!important;
+  position: static;top:
+  -100px;
+}
+.wrapfixed {
+  position: fixed!important;
+  top:0px!important;
+  left: 0px!important;
+  margin-top:0px!important;
+  z-index: 1000000;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+}
+@media (max-width: 359px) {
+  .wrapfixed {
+    position: static!important;
+    display: none!important;
+  }
+}
+/*
+ * --- 1.3 buttons ---
  */
 .btn-pri {
     font: 14px/24px 'Roboto', sans-serif;
@@ -1208,7 +1249,9 @@ ul.filter {
 	padding: 40px;
 	text-align: left;
 }
-
+.posts-container .post-content {
+  padding: 0 40px;
+}
 .post-content.pull-left {
 	text-align: right;
 }
@@ -1678,31 +1721,31 @@ p.text {
  * === 4. 404 Page ===
  */
 .not-found {
- 	text-align: center;
+  text-align: center;
 }
 .not-found .overlay-col {
-	padding-bottom: 200px;
+  padding-top: 60px;
+  padding-bottom: 100px;
 }
 .not-found h1 {
-	margin-top: 200px;
- 	font-size: 250px;
+  margin-top: 20px;
+  line-height: 1;
+  font-size: 250px;
 }
 .not-found h2.sectionh {
-	margin-top: 60px;
+  margin-top: 60px;
 }
-
-@media(max-width: 768px) {
-	.not-found .overlay-col {
-		padding-bottom: 100px;
-	}
- 	.not-found h1 {
-		margin-top: 100px;
-		font-size: 48px;
-	}
-	.not-found h2.sectionh {
-		font-size: 20px;
-		margin-top: 20px;
-	}
+@media (max-width: 768px) {
+  .not-found .overlay-col {
+    padding-bottom: 100px;
+  }
+  .not-found h1 {
+    font-size: 48px;
+  }
+  .not-found h2.sectionh {
+    font-size: 20px;
+    margin-top: 20px;
+  }
 }
 /*
  * === 5. BLOG PAGE STYLES ===
@@ -1794,7 +1837,9 @@ p.text {
 .top-space {
 	margin-top: 60px;
 }
-
+a.readmore {
+  font-weight: 500;
+}
 
 /*
  * --- 5.1 Blog Sidebar ---
@@ -1949,12 +1994,21 @@ p.text {
 	float: right;
 	color: @color_6;
 }
-
+@media (max-width: 1200px) {
+  .recent_entry .sb-title {
+    padding-left: 10px;
+  }
+  .recent_entry .sb-smdate {
+    float: left;
+    clear: both;
+  }
+}
 /*
  * === 6. BLOG SINGLE ENTRY PAGE ===
  */
 blockquote {
 	color: @color_12;
+	margin: 20px 0px;
 }
 cite {
 	color: @color_13;
@@ -2135,6 +2189,9 @@ li {
 		text-transform: none;
 		color: @secondary_color;
 	}
+}
+.comment-content.post-content {
+  padding: 10px 40px 20px 40px;
 }
 
 /*
